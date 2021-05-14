@@ -1,0 +1,28 @@
+name: sample
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - main
+      - releases/*
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    name: Sample demo
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Update build.gradle
+        uses: damienaicheh/update-android-version-gradle-action@v1.0.0
+        with:
+          build-gradle-path: './samples/build.gradle'
+          version-code: 2
+          version-name: '2.0'
+          print-file: false

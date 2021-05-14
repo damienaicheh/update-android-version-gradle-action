@@ -1,0 +1,22 @@
+name: 'Update gradle version for Android'
+description: 'Update the version of your gradle file'
+author: 'damienaicheh'
+inputs:
+  build-gradle-path:
+    description: 'Relative path for the build.gradle file.'
+    required: true
+  version-code:
+    description: 'Version code value'
+    required: true
+  version-name:
+    description: 'Version name'
+    required: true
+  print-file:
+    description: 'Output the build.gradle file in console'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'file'
+  color: 'green'

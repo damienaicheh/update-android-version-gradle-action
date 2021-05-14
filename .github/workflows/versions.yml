@@ -1,0 +1,36 @@
+name: versions
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - main
+      - releases/*
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  local-version:
+    runs-on: ubuntu-latest
+    name: Update build.gradle
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Update build.gradle
+        uses: ./
+        with:
+          build-gradle-path: './samples/build.gradle'
+          version-code: 2
+          version-name: '2.0'
+          print-file: false
+
+      - name: Update build-1.gradle
+        uses: ./
+        with:
+          build-gradle-path: './samples/build-1.gradle'
+          version-code: 3
+          version-name: '3.0.0'
+          print-file: true
